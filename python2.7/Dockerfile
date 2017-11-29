@@ -1,6 +1,4 @@
-FROM tiangolo/uwsgi-nginx:python2.7
-
-MAINTAINER Sebastian Ramirez <tiangolo@gmail.com>
+FROM robpco/nginx-uwsgi:python2.7
 
 RUN pip install flask
 
