@@ -2,32 +2,27 @@ FROM robpco/nginx-uwsgi:python2.7
 
 RUN pip install flask
 
-# By default, allow unlimited file sizes, modify it to limit the file sizes
-# To have a maximum of 1 MB (Nginx's default) change the line to:
-# ENV NGINX_MAX_UPLOAD 1m
+# Enable unlimited filesize uploads (restore nginx default by setting to 1m)
 ENV NGINX_MAX_UPLOAD 0
 
-# Which uWSGI .ini file should be used, to make it customizable
+# Specify uwsgi.ini file to use
 ENV UWSGI_INI /app/uwsgi.ini
 
-# URL under which static (not modified by Python) files will be requested
-# They will be served by Nginx directly, without being handled by uWSGI
+# Enable serving static files directly by Nginx
+# Top-level URL where requests for static files originate
 ENV STATIC_URL /static
-# Absolute path in where the static files wil be
+# Container location of Static Files (absolute path)
 ENV STATIC_PATH /app/static
-
-# If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
-# ENV STATIC_INDEX 1
+# Specify "ENV STATIC_INDEX 1" to serve '/' directly from /static/index.html (or the static URL configured)
 ENV STATIC_INDEX 0
 
-# Copy the entrypoint that will generate Nginx additional configs
+# entrypoint.sh generates Nginx config based on ENV values at container start
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
 ENTRYPOINT ["/entrypoint.sh"]
 
-# Add demo app
+# copy application-code to image
 COPY ./app /app
 WORKDIR /app
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
