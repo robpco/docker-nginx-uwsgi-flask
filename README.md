@@ -10,11 +10,11 @@ Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that 
 
 # Overview
 
-This **Docker** image allows you to create (and migrate) Python **Flask** Web Apps that run on **Nginx** with **uWSGI** in a single container. This image simplifies the task of deploying a pure-Flask solution to an Nginx-based implementation.
+These **Docker** images allows creation (and migration) of Python **Flask** Web Apps that run on **Nginx** with **uWSGI** in a single container. This image simplifies the task of deploying a pure-Flask solution to an Nginx-based implementation.
 
 These images build on base images and adds Flask, ENV vars and an auto-generated Nginx configuration at container start.  The base images [robpco/nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) integrate Nginx and uWSGI into the same container.
 
-*NOTE: This project began as a fork of the repository [tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker), due to an urgent need for changes and enhancements.  The changes I needed required making changes in the base images that repo used.  So, implementing my changes required both: creating my own [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) where most of my changes are made, and creating new "flask images" (this repo) that make use of my base images.*
+*NOTE: This project began as a fork of the repository [tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker), due to an urgent need for changes and enhancements.  The changes had to be made in the base images that repo built on.  This required creating my own [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) where most of the changes are made, and creating new "flask images" (this repo) that make use of my new base images.*
 
 **GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
 
