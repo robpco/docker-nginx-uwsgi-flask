@@ -1,50 +1,32 @@
-## Supported tags and respective `Dockerfile` links
+# Supported tags and respective `Dockerfile` links
 
-* [`python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python2.7/Dockerfile)
-* [`python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python3.5/Dockerfile)
-* [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python3.6/Dockerfile)
-* [`python2.7-index` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python2.7-index/Dockerfile)
-* [`python3.5-index` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python3.5/Dockerfile)
-* [`python3.6-index` _(Dockerfile)_](https://github.com/robertpeteuil/nginx-uwsgi-flask-docker/blob/master/python3.6-index/Dockerfile)
-
-## TODO: ADD ATTRIBUTION & LINK TO ORIGINAL REPO - PLACE MINIMUM INFO HERE
+* [`python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
+* [`python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5/Dockerfile)
+* [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
 
 # nginx-uwsgi-flask
 
-Single container **Docker** image with **Nginx** and **uWSGI** for **Flask** web applications written in Python.
+Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
-## Description
+# Overview
 
-This [**Docker**](https://www.docker.com/) image allows you to create [**Flask**](http://flask.pocoo.org/) web applications in [**Python**](https://www.python.org/) that run with [**uWSGI**](https://uwsgi-docs.readthedocs.org/en/latest/) and [**Nginx**](http://nginx.org/en/) in a single container.
+This **Docker** image allows you to create (and migrate) Python **Flask** Web Apps that run on **Nginx** with **uWSGI** in a single container. This image simplifies the task of deploying a pure-Flask solution to an Nginx-based implementation.
 
-uWSGI with Nginx is one of the best ways to deploy a Python web application.
+These images build on base images and adds Flask, ENV vars and an auto-generated Nginx configuration at container start.  The base images [robpco/nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) integrate Nginx and uWSGI into the same container.
 
-**GitHub repo**:
+*NOTE: This project began as a fork of the repository [tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker), due to an urgent need for changes and enhancements.  The changes I needed required making changes in the base images that repo used.  So, implementing my changes required both: creating my own [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) where most of my changes are made, and creating new "flask images" (this repo) that make use of my base images.*
 
-**Docker Hub image**:
+**GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
+
+**Docker Hub image**: <https://hub.docker.com/r/robpco/nginx-uwsgi-flask/>
 
 ## General Instructions
 
-You don't have to clone this repo, you should be able to use this image as a base image for your project with something in your `Dockerfile` like:
+**For detailed instructions, examples and documentation visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-flask-docker), which is extremely well documented.**
 
-```Dockerfile
-FROM tiangolo/uwsgi-nginx-flask:python3.6
+Basic instructions are provided here so the examples match the names of my image.
 
-COPY ./app /app
-```
-
-This Docker image is based on [**robpco/nginx-uwsgi**](https://hub.docker.com/r/robpco/nginx-uwsgi/). That Docker image has uWSGI and Nginx installed in the same container and was made to be the base of this image.
-
-## QuickStart
-
-**Note**: You can download the **example-flask-python3.6.zip** project example and use it as the template for your project from the section **Examples** above.
-
----
-
-Or you may follow the instructions to build your project from scratch:
-
-* Go to your project directory
-* Create a `Dockerfile` with:
+Use this image as a base image for your project by creating a `Dockerfile` like this:
 
 ```Dockerfile
 FROM robpco/nginx-uwsgi-flask:python3.6
@@ -52,8 +34,24 @@ FROM robpco/nginx-uwsgi-flask:python3.6
 COPY ./app /app
 ```
 
-* Create an `app` directory and enter in it
-* Create a `main.py` file (it should be named like that and should be in your `app` directory) with:
+
+## QuickStart
+
+To use this image:
+
+- Create a project directory
+- Create a `Dockerfile` containing the basics here
+  - the image tag in the FROM line should match the version of Python your app is written in
+  - you can optionally add an "-alpine" suffix if you want to use the alpine images.
+
+```Dockerfile
+FROM robpco/nginx-uwsgi-flask:python3.6
+
+COPY ./app /app
+```
+
+- Create an `app` directory and enter in it
+- Create a `main.py` file (it should be named like that and should be in your `app` directory) with:
 
 ```python
 from flask import Flask
@@ -70,9 +68,7 @@ if __name__ == "__main__":
 
 the main application object should be named `app` (in the code) as in this example.
 
-**Note**: The section with the `main()` function is for debugging purposes. To learn more, read the **Advanced instructions** below.
-
-* You should now have a directory structure like:
+- You should now have a directory structure like:
 
 ```
 .
