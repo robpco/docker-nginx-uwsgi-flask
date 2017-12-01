@@ -4,38 +4,54 @@
 * [`python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5/Dockerfile)
 * [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
 
+**The `latest` tag is not supported - one of the tags above must be explicitly specified.**
+- This is because the tags represent different variants not incremental versions.
+- This eliminates importing or pulling an unexpected version
+
 # nginx-uwsgi-flask
 
 Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
+*NOTE: This project began as a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker).  It was created due to an urgent need for enhacements.* 
+
+Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+
+GitHub Repo: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
+
+Docker Hub Images: <https://hub.docker.com/r/robpco/nginx-uwsgi-flask/>
+
 # Overview
 
-These **Docker** images allows creation (and migration) of Python **Flask** Web Apps that run on **Nginx** with **uWSGI** in a single container. This image simplifies the task of deploying a pure-Flask solution to an Nginx-based implementation.
+These **Docker** images allow the creation, and migration, of Python **Flask** Web Apps to run on **Nginx** with **uWSGI** in a single container.  This image simplifies the task of deploying a Flask-based App to an Nginx-based implementation.
 
-These images build on base images and adds Flask, ENV vars and an auto-generated Nginx configuration at container start.  The base images [robpco/nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) integrate Nginx and uWSGI into the same container.
-
-*NOTE: This project began as a fork of the repository [tiangolo/uwsgi-nginx-flask-docker](https://github.com/tiangolo/uwsgi-nginx-flask-docker), due to an urgent need for changes and enhancements.  The changes had to be made in the base images that repo built on.  This required creating my own [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) where most of the changes are made, and creating new "flask images" (this repo) that make use of my new base images.*
+These images build on [base images](https://hub.docker.com/r/robpco/nginx-uwsgi/) and adding Flask, Environment Variables and auto-generated Nginx configuration during container startup.
 
 **GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
 
 **Docker Hub image**: <https://hub.docker.com/r/robpco/nginx-uwsgi-flask/>
 
-## General Instructions
+# Enhancements
 
-**For detailed instructions, examples and documentation visit tiangolo's [repo](https://github.com/tiangolo/uwsgi-nginx-flask-docker), which is extremely well documented.**
+The images used in this repo includes the following enhancements:
+- The addition of an alpine-linux variants
+- Ability to change Nginx listen port with the LISTEN_PORT environment variable
+- Nginx updated to 1.13.7 on non-alpine variants
+- `supervisord` enhancements to reduce CRIT errors
+  - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
+  - `supervisord.conf` includes an explicitly set user-name
+- Automatic image republishing with Python image updates
 
-Basic instructions are provided here so the examples match the names of my image.
+# Usage
 
-Use this image as a base image for your project by creating a `Dockerfile` like this:
+The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/) contains auto-generated images from this repo.  They can be referenced (or pulled) by using the image name `robpco/nginx-uwsgi-flask`, plus a tag for the python version desired (ex: `:python3.6`), and optionally appending `-alpine` to the tag (for alpine variants).
 
-```Dockerfile
-FROM robpco/nginx-uwsgi-flask:python3.6
+**Detailed usage documentation and examples can be found on the repo by Sebastián Ramírez [tiangolo/UWSGI-NGINX-FLASK-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker).**
 
-COPY ./app /app
-```
+# Custom Environment Variables
 
+These images support the following custom environment variables:
 
-## QuickStart
+# QuickStart
 
 To use this image:
 
