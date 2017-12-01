@@ -1,4 +1,4 @@
-FROM robpco/nginx-uwsgi:python2.7
+FROM robpco/nginx-uwsgi:python2.7-alpine
 
 RUN pip install flask
 
