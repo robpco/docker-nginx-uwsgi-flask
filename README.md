@@ -16,7 +16,7 @@
 
 Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
-*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker), and was created due to an urgent need for fixes and enhancements.*  Implementing them required changes to both the [base image](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask image](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker), and was created due to an urgent need for fixes and enhancements.*  This required creating derivatives of the [base image](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask image](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 **GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
 
