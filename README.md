@@ -44,7 +44,7 @@ The image used in this repo includes the following enhancements (over previous r
 
 # Usage
 
-Basic usage information is provided below.  For full documentation with examples please visit the original repo: [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  If you're using the reference the documentation on the original repo, remember to use this image `robpco/nginx-uwsgi-flask` to get this version.
+Basic usage information is provided below.  For full documentation with examples please visit the original repo: [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  If using the documentation on the original repo, remember to reference this image `robpco/nginx-uwsgi-flask`.
 
 **Flask Web-Apps normally use this image as a base image**
 
