@@ -16,9 +16,7 @@
 
 Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
-*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker), and was created ato address an urgent need for fixes and enhancements.*
-
-Implementing the enhancements required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker), and was created due to an urgent need for fixes and enhancements.*  Implementing them required changes to both the [base image](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask image](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 **GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
 
@@ -26,11 +24,11 @@ Implementing the enhancements required creating derivatives of both the [base im
 
 # Overview
 
-This **Docker** image enables the creation of Python **Flask** Apps that run on **Nginx** by using **uWSGI**.  It also simplifies the task of migrating a Flask-only App to run on Nginx, which is much more scalable for production deployments.
+This **Docker** image enables Python **Flask** Apps to run on **Nginx** using **uWSGI**.  It simplifies the task of migrating pure Flask Web Apps to Nginx-based Web Apps, which desirable for production deployment scenarios.
 
-This image adds Flask support, Environment Variables and the ability to generated configuration details during startup to the underlying base image [nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/).
+This image builds on the [nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) base image and adds Flask support and additional customization during startup through addition of several Environment Variables.
 
-The Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/) contains auto-generated images from this repo: one for each Python version, and each one of those has a normal and Alpine-based image.  These images can be referenced, or pulled, by using the image name with the tags listed above.
+Thsi repo auto-generates image to the Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/), including variants for the supported Python version (2.7, 3.5, 3.6) and standard and alpine variants for each language.
 
 # Enhancements
 
@@ -41,19 +39,19 @@ The image used in this repo includes the following enhancements (over previous r
 - Reduces CRIT errors from `supervisord`
   - `supervisord.conf` is explicitly referenced via the Dockerfile CMD statement
   - `supervisord.conf` includes an explicitly set user-name
-- Docker-Hub Image is Automatically re-built when Python updates
-- Manually Building the image is protected against failures from key-server outages
+- Docker-Hub Image is Automatically re-built whenever the base image updates
+- Dockerfile enhancements to protect against build failures caused by key-server outages
 
 # Usage
 
-Basic usage information is provided below.  For full documentation with examples please visit the original repo: [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  If you reference the documentation on the original repo, remember to use this image `robpco/nginx-uwsgi-flask` to get the enhancements described above.
+Basic usage information is provided below.  For full documentation with examples please visit the original repo: [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  If you're using the reference the documentation on the original repo, remember to use this image `robpco/nginx-uwsgi-flask` to get this version.
 
-**This image is normally as a base image for a project**
+**Flask Web-Apps normally use this image as a base image**
 
-This involves three high-level steps:
-1. Creating a `Dockerfile` that references this image:tag
-2. Building an Image from that `Dockerfile`
-3. Running the Image and Testing the App
+This involves three steps:
+1. Create a `Dockerfile` that references this image:tag
+2. Build an Image from that `Dockerfile`
+3. Run the Image and Testing the App
 
 **STEP 1 - Create a `Dockerfile`**
 - In this example, we use the `FROM` line to specify this image and the `python3.6-alpine` variant
@@ -67,9 +65,9 @@ COPY ./app /app
 
 
 **STEP 2 - Build an image from the `Dockerfile`**
-- Next we use the `docker build` command to create the image, name it `myapp` and tag it as version `1`
+- Next we use the `docker build` command to create the image, name it `myapp`
 ```
-docker build -t myapp:1 .
+docker build -t myapp .
 ```
 
 
@@ -78,11 +76,11 @@ docker build -t myapp:1 .
   - The `-p` parameter maps the localhost's port 8080 to port 80 of the image
   - The `-d` parameter `detaches` our terminal session from the image
   - The `--rm` parameter automatically removes the image when it's stopped.
-  - Finally, we specify the name `myapp` and tag `1` of the image
-- After running the command, we can open up out web-browser and type in `http://localhost:8080` and interact with our Python Flask application
+  - Finally, we specify the name of the image: `myapp`
+- After running the command, we can open up a web-browser and type in `http://localhost:8080` and interact with our Python Flask application
 
 ```
-docker run --rm -p 8080:80 -d myapp:1
+docker run --rm -p 8080:80 -d myapp
 ```
 
 
