@@ -25,9 +25,9 @@ Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that 
 
 This **Docker** image enables Python **Flask** Apps to run on **Nginx** using **uWSGI**.  It simplifies the task of migrating pure Flask Web Apps to Nginx-based Web Apps, which desirable for production deployment scenarios.
 
-This image builds on the [nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) base image and adds Flask support and additional customization during startup through addition of several Environment Variables.
+This image builds on the [nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) base image and adds Flask support and additional Environment Variables to enable customization.
 
-Thsi repo auto-generates image to the Docker-Hub [repository](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/), including variants for the supported Python version (2.7, 3.5, 3.6) and standard and alpine variants for each language.
+This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.5, 3.6).
 
 # Enhancements
 
