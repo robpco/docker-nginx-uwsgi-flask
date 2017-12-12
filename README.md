@@ -1,11 +1,11 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
-- [`python2.7-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7-alpine/Dockerfile)
-- [`python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5/Dockerfile)
-- [`python3.5-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5-alpine/Dockerfile)
-- [`python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
-- [`python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6-alpine/Dockerfile)
+- [`py2.7`, `python2.7` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
+- [`py2.7-alpine`, `python2.7-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7-alpine/Dockerfile)
+- [`py3.5`, `python3.5` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5/Dockerfile)
+- [`py3.5-alpine`, `python3.5-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.5-alpine/Dockerfile)
+- [`py3.6`, `python3.6` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
+- [`py3.6-alpine`, `python3.6-alpine` _(Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6-alpine/Dockerfile)
 
 
 **The `latest` tag is not supported - one of the tags above must be explicitly specified.**
@@ -16,7 +16,7 @@
 
 Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
-*NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-flask-docker), and was created due to an urgent need for fixes and enhancements.*  This required creating derivatives of the [base image](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask image](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
+> NOTE: This project is a derivative of the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).  It was created out of necessity to address urgent fixes and enhancements.  This ultimately required creating derivatives of both the [base images](https://github.com/robertpeteuil/docker-nginx-uwsgi) and the [flask images](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask).
 
 **GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
 
@@ -138,6 +138,7 @@ services:
 
 
 ## UPDATES
+- 2017-12-11: Added multiple tags per variant: `py3.6` is the same as `python3.6`, and so forth...
 - 2017-11-29: Added ability to change port Nginx listens on with new environment variable `LISTEN_PORT`.
   - Thanks to github user [tmshn](https://github.com/tmshn)
 - 2017-11-29: Alpine variants added
