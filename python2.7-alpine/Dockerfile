@@ -1,6 +1,6 @@
 FROM robpco/nginx-uwsgi:python2.7-alpine
 
-RUN pip install flask
+RUN pip install --no-cache-dir --disable-pip-version-check flask
 
 # Enable unlimited filesize uploads (restore nginx default by setting to 1m)
 ENV NGINX_MAX_UPLOAD 0
