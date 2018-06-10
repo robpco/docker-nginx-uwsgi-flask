@@ -1,9 +1,9 @@
 # Supported tags and respective `Dockerfile` links
 
-- `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
-- `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python2.7-alpine/Dockerfile)
-- `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
-- `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robertpeteuil/docker-nginx-uwsgi-flask/blob/master/python3.6-alpine/Dockerfile)
+- `2.7`, `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
+- `2.7-A`, `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python2.7-alpine/Dockerfile)
+- `3.6`, `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
+- `3.6-A`, `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python3.6-alpine/Dockerfile)
 
 **You must explicitly use one of the tags above.**  The `latest` tag is not assigned since each tag represents a different variant, not an incremental version.
 
@@ -11,7 +11,7 @@
 
 Docker image with **Nginx**, **uWSGI** and **Flask** in a single container that enables running Python Flask Apps on NGINX.
 
-**GitHub repo**: <https://github.com/robertpeteuil/docker-nginx-uwsgi-flask>
+**GitHub repo**: <https://github.com/robpco/docker-nginx-uwsgi-flask>
 
 **Docker Hub image**: <https://hub.docker.com/r/robpco/nginx-uwsgi-flask/>
 
