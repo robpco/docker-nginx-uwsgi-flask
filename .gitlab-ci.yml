@@ -24,6 +24,9 @@ build27:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
+    refs:
+      - schedules
+  retry: 2
 
 build36:
   stage: build
@@ -36,6 +39,9 @@ build36:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
+    refs:
+      - schedules
+  retry: 2
 
 build27-alpine:
   stage: build
@@ -48,6 +54,9 @@ build27-alpine:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
+    refs:
+      - schedules
+  retry: 2
 
 build36-alpine:
   stage: build
@@ -60,3 +69,6 @@ build36-alpine:
   only:
     variables:
       - $CI_COMMIT_TAG =~ /^deploy+/
+    refs:
+      - schedules
+  retry: 2
