@@ -1,9 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
 - `2.7`, `py2.7`, `python2.7` [_(python2.7/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python2.7/Dockerfile)
-- `2.7-A`, `py2.7-A`, `py2.7-alpine`, `python2.7-alpine` [_(python2.7-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python2.7-alpine/Dockerfile)
 - `3.6`, `py3.6`, `python3.6` [_(python3.6/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python3.6/Dockerfile)
-- `3.6-A`, `py3.6-A`, `py3.6-alpine`, `python3.6-alpine` [_(python3.6-alpine/Dockerfile)_](https://github.com/robpco/docker-nginx-uwsgi-flask/blob/master/python3.6-alpine/Dockerfile)
 
 **You must explicitly use one of the tags above.**  The `latest` tag is not assigned since each tag represents a different variant, not an incremental version.
 
@@ -21,7 +19,7 @@ This **Docker** image enables Python **Flask** Apps to run on **Nginx** using **
 
 This image builds on the [nginx-uwsgi](https://hub.docker.com/r/robpco/nginx-uwsgi/) base image and adds Flask support and additional Environment Variables to enable customization.
 
-This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/).  It includes standard and alpine-based variants for each supported Python version (2.7, 3.6).
+This repo auto-generates images to [Docker-Hub](https://hub.docker.com/r/robpco/nginx-uwsgi-flask/).  It includes variants for each supported Python version (2.7, 3.6).
 
 ## Usage
 
@@ -35,11 +33,11 @@ To use this image as a base for a **Flask Web-App**:
 
 ### STEP 1 - Create a `Dockerfile`
 
-- In this example, we use the `FROM` line to specify this image and the `python3.6-alpine` variant
+- In this example, we use the `FROM` line to specify this image and the `python3.6` variant
 - We copy our python scripts, in a sub-directory on the local computer called `app`, to a folder in the container called `/app`.
 
 ```Dockerfile
-FROM robpco/nginx-uwsgi-flask:python3.6-alpine
+FROM robpco/nginx-uwsgi-flask:python3.6
 
 COPY ./app /app
 ```
@@ -114,27 +112,19 @@ services:
     LISTEN_PORT: 8080
 ```
 
-Inspired by the project at [tiangolo/UWSGI-NGINX-DOCKER](https://github.com/tiangolo/uwsgi-nginx-docker).
-
 ## UPDATES
 
 - 2017-12-11: Added multiple tags per variant: `py3.6` is the same as `python3.6`, and so forth...
 - 2017-11-29: Added ability to change port Nginx listens on with new environment variable `LISTEN_PORT`.
   - Thanks to github user [tmshn](https://github.com/tmshn)
-- 2017-11-29: Alpine variants added
-  - Thanks to github user [ProgEsteves](https://github.com/ProgEsteves)
 - 2017-11-29: Automatic image re-build when Python updates
-- 2017-11-28: Updated Nginx version installed on non-Alpine images
+- 2017-11-28: Updated Nginx version installed
 - 2018-05-04: Updated for new base images
 
 ## CHANGELOG
 
 - 2017-12-15: Fix to avoid duplicate listen entries in nginx.conf
-- 2017-11-30: Alpine images - eliminated uWSGI random build failures
-- 2017-11-30: Non-Alpine images - limit build failures caused by GPG key validation failing
-- 2017-11-29: Alpine required additional changes:
-  - Replace default `/etc/nginx/nginx.conf` with an alternate version
-  - Create `/run/nginx` directory to stop immediate Nginx crash
+- 2017-11-30: limit build failures caused by GPG key validation failing
 - 2017-11-28: Fixed console errors from supervisor process:
   - Added explicit path reference to `supervisord.conf` in Dockerfile `CMD` statement
   - Added explicitly set username in `supervisord.conf`
