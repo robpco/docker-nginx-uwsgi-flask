@@ -1,0 +1,7 @@
+version: 2
+updates:
+- package-ecosystem: docker
+  directory: "/python3.6"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
